@@ -1,0 +1,35 @@
+workspace: "uri:http://ultrastructure.me/ontology/com.chiralbehaviors/demo/humblr" 
+           version: 1
+           "Humblr" 
+           "Ultrastructure sketch of Tumblr"
+imports {
+    "urn:uuid:00000000-0000-0004-0000-000000000003" as kernel
+    "uri:http://ultrastructure.me/ontology/com.chiralbehaviors/demo/northwind" as nw
+}
+
+agencies {
+    facets {
+        IsA.User { Name }
+            constraints {
+                n Owns: IsA.Tumblr
+            }
+    }
+}
+
+products {
+    facets {
+        IsA.Post { Title URI }
+            constraints {
+                one Previous: IsA.Post 
+            }
+        IsA.Tumblr {
+            n Owns: IsA.Post 
+        }
+        
+    }
+}
+
+relationship {
+    Owns = "Owns" "A owns B" | OwnedBy = "Owned By" "A is owned by B";
+    Previous = "Previous" "A is previous to B" | Next = "Next" "A is the next after B";
+}
