@@ -1,6 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
->
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.chiralbehaviors.humblr</groupId>
     <artifactId>humblr.app</artifactId>
@@ -8,4 +7,36 @@
     <name>Humbler</name>
     <description>A Tumblr sketch</description>
     <packaging>pom</packaging>
+
+    <properties>
+        <us.version>2.0.0-SNAPSHOT</us.version>
+        <postgresql.driver.version>9.4-1201-jdbc41</postgresql.driver.version>
+        <jackson.version>2.5.1</jackson.version>
+        <hibernate.version>4.3.8.Final</hibernate.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <core.java.login>core_java</core.java.login>
+        <core.java.password>password</core.java.password>
+
+        <testing.db.database>postgres</testing.db.database>
+        <testing.db.server>127.0.0.1</testing.db.server>
+        <testing.db.port>5433</testing.db.port>
+        <testing.db.login>postgres</testing.db.login>
+        <testing.db.password>postgres</testing.db.password>
+
+        <db.server>${testing.db.server}</db.server>
+        <db.port>${testing.db.port}</db.port>
+        <db.database>humblr</db.database>
+        <db.login>core</db.login>
+        <db.password>password</db.password>
+
+        <coreServer>${db.server}</coreServer>
+        <corePort>${db.port}</corePort>
+        <coreUsername>${db.login}</coreUsername>
+        <corePassword>${db.password}</corePassword>
+        <coreDb>${db.database}</coreDb>
+
+        <dropDatabase>false</dropDatabase>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 </project>

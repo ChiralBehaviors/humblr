@@ -1,13 +1,76 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.chiralbehaviors.humblr</groupId>
-    <artifactId>humblr.app</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-  </parent>
-  <groupId>com.chiralbehaviors.humblr</groupId>
-  <artifactId>schema-loading</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>Humblr Schema Loader</name>
-  <description>Loads the humblr schema from the humblr workspace</description>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.chiralbehaviors.humblr</groupId>
+        <artifactId>humblr.app</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <artifactId>schema-loading</artifactId>
+    <name>Humblr Schema Loader</name>
+    <description>Loads the humblr schema from the humblr workspace</description>
+
+    <profiles>
+        <profile>
+            <id>database.active</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <executions>
+                            <execution>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>load</goal>
+                                </goals>
+                                <configuration>
+                                    <loader>
+                                        <dbaServer>${db.server}</dbaServer>
+                                        <dbaPort>${db.port}</dbaPort>
+                                        <dbaUsername>${db.login}</dbaUsername>
+                                        <dbaPassword>${db.password}</dbaPassword>
+
+                                        <coreServer>${db.server}</coreServer>
+                                        <corePort>${db.port}</corePort>
+                                        <coreUsername>${db.login}</coreUsername>
+                                        <corePassword>${db.password}</corePassword>
+                                        <coreDb>${db.database}</coreDb>
+
+                                        <dropDatabase>${drop}</dropDatabase>
+                                    </loader>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <groupId>com.chiralbehaviors.CoRE</groupId>
+                        <artifactId>loader-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>clear</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <executions>
+                            <execution>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>clear</goal>
+                                </goals>
+                                <configuration>
+                                    <coreServer>${northwind.db.server}</coreServer>
+                                    <corePort>${northwind.db.port}</corePort>
+                                    <coreUsername>${northwind.db.login}</coreUsername>
+                                    <corePassword>${northwind.db.password}</corePassword>
+                                    <coreDb>${northwind.db.database}</coreDb>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <groupId>com.chiralbehaviors.CoRE</groupId>
+                        <artifactId>loader-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
