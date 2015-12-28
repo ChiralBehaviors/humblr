@@ -11,6 +11,7 @@ agencies {
         IsA.User { Name }
             constraints {
                 n Owns: IsA.Channel
+                n Follows: IsA.User
             }
     }
 }
@@ -18,7 +19,7 @@ agencies {
 attributes {
     Title = "Title" "The title" text;
     URI = "URI" "URI" text;
-    Name = "name" "name" text;
+    Name = "Name" "name" text;
 }
 
 products {
@@ -27,7 +28,8 @@ products {
     facets {
         IsA.Post { Title URI }
             constraints {
-                one Previous: IsA.Post 
+                one IsRepostOf: IsA.Post 
+                n RepostedAs: IsA.Post
             }
         IsA.Channel { Name }
             constraints {
@@ -39,5 +41,8 @@ products {
 
 relationships {
     Owns = "Owns" "A owns B" | OwnedBy = "Owned By" "A is owned by B";
-    Previous = "Previous" "A is previous to B" | Next = "Next" "A is the next after B";
+    HasFavorite = "HasFavorite" "A has favorite B" | IsFavoriteOf = "IsFavoriteOf" "B is a favorite of A";
+    Follows = "Follows" "A follows B" | HasFollower = "HasFollower" "B has a follower A";
+    IsRepostOf = "IsRepostOf" "A is a repost of B" | RepostedAs = "RepostedAs" "B is reposted as A";
+    
 }
