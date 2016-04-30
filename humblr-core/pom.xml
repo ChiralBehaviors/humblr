@@ -6,70 +6,10 @@
         <artifactId>humblr.app</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>humblr-core</artifactId>
+  <artifactId>humblr-core</artifactId>
     <name>Humblr Core</name>
-    <description>The core Humblr functionality</description>
+    <description>The core humblr functionality</description>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>com.chiralbehaviors.CoRE</groupId>
-                <artifactId>phantasm-plugin</artifactId>
-                <version>${us.version}</version>
-                <executions>
-                    <execution>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <generator>
-                                <resource>${basedir}/src/main/resources/humblr.wsp</resource>
-                                <outputDirectory>${project.build.directory}/generated-sources/phantasm</outputDirectory>
-                                <packageName>com.chiralbehaviors.CoRE.humblr.phantasm</packageName>
-                                <appendTypeToPackage>true</appendTypeToPackage>
-                            </generator>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-        <pluginManagement>
-            <plugins>
-                <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
-                <plugin>
-                    <groupId>org.eclipse.m2e</groupId>
-                    <artifactId>lifecycle-mapping</artifactId>
-                    <version>1.0.0</version>
-                    <configuration>
-                        <lifecycleMappingMetadata>
-                            <pluginExecutions>
-                                <pluginExecution>
-                                    <pluginExecutionFilter>
-                                        <groupId>
-                                            com.chiralbehaviors.CoRE
-                                        </groupId>
-                                        <artifactId>
-                                            phantasm-plugin
-                                        </artifactId>
-                                        <versionRange>
-                                            [0.0.1-SNAPSHOT,)
-                                        </versionRange>
-                                        <goals>
-                                            <goal>generate</goal>
-                                        </goals>
-                                    </pluginExecutionFilter>
-                                    <action>
-                                        <ignore></ignore>
-                                    </action>
-                                </pluginExecution>
-                            </pluginExecutions>
-                        </lifecycleMappingMetadata>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -84,6 +24,11 @@
         <dependency>
             <groupId>com.chiralbehaviors.CoRE</groupId>
             <artifactId>animations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.chiralbehaviors.humblr</groupId>
+            <artifactId>humblr-datamodel</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 </project>

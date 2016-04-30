@@ -10,8 +10,10 @@ agencies {
     facets {
         IsA.User { Name }
             constraints {
-                n Owns: IsA.Channel
-                n Follows: IsA.User
+                n Owns: IsA.Channel 
+                n Follows: IsA.Channel named by relationship
+                n Follows: IsA.Post
+                one Owns: IsA.Stream
             }
     }
 }
@@ -25,16 +27,21 @@ attributes {
 products {
     Channel = "Channel" "A feed owned by a user";
     Post = "Post" "A single post on a feed";
+    Stream = "Stream" "A collection of posts constructed from channels followed by a user";
     facets {
         IsA.Post { Title URI }
             constraints {
-                one IsRepostOf: IsA.Post 
-                n RepostedAs: IsA.Post
+                one IsRepostOf: IsA.Post named by relationship
+                n RepostedAs: IsA.Post named by relationship
             }
         IsA.Channel { Name }
             constraints {
-                n Owns: IsA.Post
+                n Owns: IsA.Post 
             } 
+        IsA.Stream { Name }
+            constraints {
+                one OwnedBy: IsA.User named by relationship
+            }
         
     }
 }
@@ -45,4 +52,8 @@ relationships {
     Follows = "Follows" "A follows B" | HasFollower = "HasFollower" "B has a follower A";
     IsRepostOf = "IsRepostOf" "A is a repost of B" | RepostedAs = "RepostedAs" "B is reposted as A";
     
+}
+
+inferences {
+    Follows.Owns.Follows
 }
