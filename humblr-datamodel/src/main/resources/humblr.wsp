@@ -12,9 +12,13 @@ agencies {
             constraints {
                 n Owns: IsA.Channel 
                 n Follows: IsA.Channel named by relationship
-                n Follows: IsA.Post
+                n Follows get: inferred: IsA.Post named feed
                 one Owns: IsA.Stream
             }
+        IsA.Person { Name }
+        	constraints {
+        		n HasFavorite: IsA.Post
+        }
     }
 }
 
@@ -33,6 +37,7 @@ products {
             constraints {
                 one IsRepostOf: IsA.Post named by relationship
                 n RepostedAs: IsA.Post named by relationship
+                n IsFavoriteOf: IsA.User
             }
         IsA.Channel { Name }
             constraints {
